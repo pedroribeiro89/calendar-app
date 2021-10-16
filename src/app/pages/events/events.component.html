@@ -1,11 +1,6 @@
 <article>
   <h1>Events Calendar</h1>
 
-  <section>
-    <select name="Select Year" [formControl]="yearControl" (change)="onYearChange()">
-      <option *ngFor="let year of yearOptions" [value]="year">{{year}}</option>
-    </select>
-    <app-month-select (change)="onMonthChange($event)"></app-month-select>
-  </section>
+  <app-calendar [calendarParams]="calendar"></app-calendar>
 
 </article>

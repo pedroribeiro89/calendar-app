@@ -1,1 +1,7 @@
-<p>calendar works!</p>
+<section class="filters" *ngIf="yearControl.value">
+  <select name="Select Year" [formControl]="yearControl">
+    <option *ngFor="let year of yearOptions" [value]="year">{{year}}</option>
+  </select>
+  <app-month-select (change)="onMonthChange($event)"></app-month-select>
+</section>
+

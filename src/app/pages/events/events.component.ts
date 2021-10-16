@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {ICalendarParams} from "../../components/calendar/calendar.component";
 
 @Component({
   selector: 'app-events',
@@ -8,21 +8,13 @@ import {FormControl} from "@angular/forms";
 })
 export class EventsComponent implements OnInit {
 
-  yearOptions = [2020, 2019];
-  yearControl = new FormControl(2020);
-
+  calendar: ICalendarParams = {yearOptions: []};
 
   constructor() { }
 
   ngOnInit(): void {
+    this.calendar = {
+      yearOptions: [2020, 2019]
+    };
   }
-
-  onYearChange() {
-    console.log(this.yearControl.value);
-  }
-
-  onMonthChange(month: number) {
-    console.log(month);
-  }
-
 }

@@ -4,6 +4,7 @@ import { EventsComponent } from './events.component';
 import {EventsRoutingModule} from "./events-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MonthSelectModule} from "../../components/month-select/month-select.module";
+import {CalendarModule} from "../../components/calendar/calendar.module";
 
 
 
@@ -15,7 +16,7 @@ import {MonthSelectModule} from "../../components/month-select/month-select.modu
     CommonModule,
     ReactiveFormsModule,
     EventsRoutingModule,
-    MonthSelectModule
+    CalendarModule
   ]
 })
 export class EventsModule { }

@@ -1,0 +1,8 @@
+@import "app-theme";
+article {
+  padding: 1rem;
+  h1 {
+    margin: 0;
+    color: $primary-font-color;
+  }
+}

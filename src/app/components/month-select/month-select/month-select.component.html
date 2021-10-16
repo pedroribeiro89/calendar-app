@@ -1,5 +1,5 @@
 <div>
-  <button (click)="previousMonth()" *ngIf="current > 0">prev</button>
+  <button (click)="previousMonth()" [disabled]="current === 0">prev</button>
   <span>{{currentStr}}</span>
-  <button (click)="nextMonth()" *ngIf="current < 12">next</button>
+  <button (click)="nextMonth()" [disabled]="current === 11">next</button>
 </div>
