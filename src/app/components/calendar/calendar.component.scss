@@ -22,3 +22,50 @@
     app-month-select { width: 20rem; }
   }
 }
+
+.calendar {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid $secondary-color;
+  border-left: 1px solid $secondary-color;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 80%;
+    margin: auto;
+  }
+}
+
+.day {
+  display: grid;
+  width: 100%;
+  min-height: 5rem;
+  border-bottom: 1px solid $secondary-color;
+  border-right: 1px solid $secondary-color;
+
+  &__name {
+    margin: 0;
+    padding: 0.3rem;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    border-bottom: 1px solid $secondary-color;
+    height: 1rem;
+    &__num {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__events {
+    padding: 0.5rem;
+    p {
+      border: 1px solid $accent-color;
+      border-radius: 5px;
+      padding: 0.3rem;
+      text-align: center;
+      width: 90%;
+      margin: 0.5rem auto;
+      background-color: $accent-color;
+      color: white;
+    }
+  }
+}

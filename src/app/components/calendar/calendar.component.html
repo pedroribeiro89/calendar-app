@@ -1,7 +1,18 @@
 <section class="filters" *ngIf="yearControl.value">
-  <select name="Select Year" [formControl]="yearControl">
+  <select name="Select Year" [formControl]="yearControl" (ngModelChange)="onYearChange()">
     <option *ngFor="let year of yearOptions" [value]="year">{{year}}</option>
   </select>
   <app-month-select (change)="onMonthChange($event)"></app-month-select>
 </section>
 
+<section class="calendar" *ngIf="daysArray.length > 0">
+  <section class="day" *ngFor="let day of daysArray; let dayNum = index;">
+    <h1 class="day__name">
+      <span class="day__name__num">{{dayNum + 1}}</span>
+      <span>{{day | date: 'EEEE'}}</span>
+    </h1>
+    <div class="day__events" *ngIf="(dayNum+1) % 2 === 0">
+      <p *ngFor="let i of [1,2,3]">Liverpool FC x Norwich City FC</p>
+    </div>
+  </section>
+</section>
