@@ -6,13 +6,13 @@
 </section>
 
 <section class="calendar" *ngIf="daysArray.length > 0">
-  <section class="day" *ngFor="let day of daysArray; let dayNum = index;">
+  <section class="day" *ngFor="let dayItem of daysArray; let dayNum = index;">
     <h1 class="day__name">
       <span class="day__name__num">{{dayNum + 1}}</span>
-      <span>{{day | date: 'EEEE'}}</span>
+      <span>{{dayItem.day | date: 'EEEE'}}</span>
     </h1>
-    <div class="day__events" *ngIf="(dayNum+1) % 2 === 0">
-      <p *ngFor="let i of [1,2,3]">Liverpool FC x Norwich City FC</p>
+    <div class="day__events">
+      <p *ngFor="let event of dayItem.events">{{event.name}}</p>
     </div>
   </section>
 </section>
