@@ -1,4 +1,4 @@
-<section class="filters" *ngIf="yearControl.value">
+<section class="filters">
   <select name="Select Year" [formControl]="yearControl" (ngModelChange)="onYearChange()">
     <option *ngFor="let year of yearOptions" [value]="year">{{year}}</option>
   </select>

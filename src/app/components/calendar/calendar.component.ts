@@ -2,14 +2,12 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormControl} from "@angular/forms";
 
 export interface ICalendarParams {
-  yearOptions: number[];
   events: ICalendarEvent[];
 }
 
 export interface ICalendarEvent {
   date: Date;
   name: string;
-  data: any;
 }
 
 export interface ICalendarDay {
@@ -24,21 +22,20 @@ export interface ICalendarDay {
 })
 export class CalendarComponent implements OnInit {
 
-  yearOptions: number[] = [];
-  yearControl = new FormControl(null);
+  yearOptions = [2020, 2019];
+  yearControl = new FormControl(2020);
   public selectedMonth = 0;
 
   private events: ICalendarEvent[] = [];
   public daysArray: ICalendarDay[] = [];
 
-  @Input() set calendarParams(params: ICalendarParams)  {
-    if (params.yearOptions.length > 0) {
-      this.yearOptions = params.yearOptions;
-      this.yearControl.setValue(this.yearOptions[0]);
-      this.events = params.events;
-      this.buildDays();
-    }
+  @Input() set calendarParams(params: ICalendarParams) {
+    this.events = params.events;
+    this.buildDays();
+    console.log(this.events);
   }
+
+  @Output() changeFilter = new EventEmitter<{month: number, year: number}>();
 
   constructor() { }
 
@@ -61,12 +58,11 @@ export class CalendarComponent implements OnInit {
   }
 
   onYearChange() {
-    this.buildDays();
+    this.changeFilter.emit({ month: this.selectedMonth, year: +this.yearControl.value });
   }
   onMonthChange(month: number) {
     this.selectedMonth = month;
-    this.buildDays();
+    this.changeFilter.emit({ month, year: +this.yearControl.value });
   }
-
 
 }

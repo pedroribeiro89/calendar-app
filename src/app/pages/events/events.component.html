@@ -1,6 +1,7 @@
 <article>
   <h1>Events Calendar</h1>
 
-  <app-calendar [calendarParams]="calendar"></app-calendar>
+  <p *ngIf="isLoading">Loading calendar...</p>
+  <app-calendar *ngIf="!isLoading" [calendarParams]="calendar" (changeFilter)="loadEvents($event.month, $event.year)"></app-calendar>
 
 </article>
