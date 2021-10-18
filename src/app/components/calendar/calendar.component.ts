@@ -32,7 +32,6 @@ export class CalendarComponent implements OnInit {
   @Input() set calendarParams(params: ICalendarParams) {
     this.events = params.events;
     this.buildDays();
-    console.log(this.events);
   }
 
   @Output() changeFilter = new EventEmitter<{month: number, year: number}>();
@@ -60,6 +59,7 @@ export class CalendarComponent implements OnInit {
   onYearChange() {
     this.changeFilter.emit({ month: this.selectedMonth, year: +this.yearControl.value });
   }
+
   onMonthChange(month: number) {
     this.selectedMonth = month;
     this.changeFilter.emit({ month, year: +this.yearControl.value });
