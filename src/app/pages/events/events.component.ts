@@ -13,6 +13,7 @@ export class EventsComponent implements OnInit {
   public calendar: ICalendarParams = { events: [] };
 
   public isLoading = false;
+  public error = '';
 
   constructor(private eventsService: EventsService) { }
 
@@ -28,11 +29,17 @@ export class EventsComponent implements OnInit {
   loadEvents(month: number, year: number) {
     this.eventsService.loadEvents(month, year)
       .pipe(
-        tap(() => this.isLoading = true),
+        tap(() => {
+          this.isLoading = true;
+          this.error = '';
+        }),
         finalize(() => this.isLoading = false)
       )
-      .subscribe((events: ICalendarEvent[]) =>
-        this.calendar = { events }
+      .subscribe(
+        (events: ICalendarEvent[]) => this.calendar = { events },
+        (error) => {
+          this.error = error.error.message;
+        }
       );
 
   }
