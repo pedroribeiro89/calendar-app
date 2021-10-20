@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ICalendarEvent, ICalendarParams} from "../../components/calendar/calendar.component";
 import {EventsService} from "./events.service";
-import {finalize, tap} from "rxjs/operators";
+import {finalize} from "rxjs/operators";
 
 @Component({
   selector: 'app-events',
@@ -18,29 +18,20 @@ export class EventsComponent implements OnInit {
   constructor(private eventsService: EventsService) { }
 
   ngOnInit(): void {
-    //TODO: fix timezone
-    // const x = new Date("2019-08-17");
-    // console.log('x', x);
-    // console.log('x', new Date(x.getTime() + x.getTimezoneOffset() * 60000));
-    // console.log('x', x.getFullYear(),x.getMonth(), x.getDay());
     this.loadEvents(0, 2020);
   }
 
+
   loadEvents(month: number, year: number) {
+    this.isLoading = true;
+    this.error = '';
     this.eventsService.loadEvents(month, year)
-      .pipe(
-        tap(() => {
-          this.isLoading = true;
-          this.error = '';
-        }),
-        finalize(() => this.isLoading = false)
-      )
+      .pipe(finalize(() => this.isLoading = false))
       .subscribe(
         (events: ICalendarEvent[]) => this.calendar = { events },
         (error) => {
           this.error = error.error.message;
         }
       );
-
   }
 }

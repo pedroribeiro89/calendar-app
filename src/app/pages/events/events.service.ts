@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {ICalendarEvent, ICalendarParams} from "../../components/calendar/calendar.component";
+import {ICalendarEvent} from "../../components/calendar/calendar.component";
 import {environment} from "../../../environments/environment";
 
 export interface IEventsResponse {

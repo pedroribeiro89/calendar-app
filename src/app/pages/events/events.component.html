@@ -2,7 +2,7 @@
   <h1>Events Calendar</h1>
 
   <p *ngIf="isLoading">Loading calendar...</p>
-  <app-calendar *ngIf="!isLoading && error.length === 0" [calendarParams]="calendar" (changeFilter)="loadEvents($event.month, $event.year)"></app-calendar>
+  <app-calendar [hidden]="isLoading || error.length > 0"  [calendarParams]="calendar" (changeFilter)="loadEvents($event.month, $event.year)"></app-calendar>
   <p class="error"><strong>{{error}}</strong></p>
 
 </article>
